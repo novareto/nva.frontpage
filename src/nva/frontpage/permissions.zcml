@@ -6,6 +6,12 @@
   <configure zcml:condition="installed AccessControl.security">
   <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+        id="nva.frontpage.AddLandingpage"
+        title="nva.frontpage: Add Landingpage"
+    />
+
+
 
   </configure>
 
