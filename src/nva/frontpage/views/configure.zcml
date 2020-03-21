@@ -1,0 +1,18 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="nva.frontpage">
+
+  -*- extra stuff goes here -*-
+
+  <browser:page
+    name="landing-view"
+    for="Products.CMFCore.interfaces.IFolderish"
+    class=".landing_view.LandingView"
+    template="landing_view.pt"
+    permission="zope2.View"
+    />
+
+
+</configure>
