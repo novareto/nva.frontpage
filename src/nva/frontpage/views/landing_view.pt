@@ -1,13 +1,66 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:metal="http://xml.zope.org/namespaces/metal"
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-      i18n:domain="nva.frontpage"
-      metal:use-macro="context/main_template/macros/master">
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="example.conference">
 <body>
-  <metal:block fill-slot="content-core">
-      <h2 i18n:translate="">Sample View</h2>
-      <p tal:content="view/msg">this gets replaced</p>
-  </metal:block>
+
+<metal:main fill-slot="main">
+    <tal:main-macro metal:define-macro="main">
+
+      <div class="container">
+
+        <div tal:replace="structure provider:plone.abovecontenttitle" />
+
+        <h1 tal:condition="context/show_title" class="documentFirstHeading" tal:content="context/title" />
+
+        <div tal:replace="structure provider:plone.belowcontenttitle" />
+
+        <p tal:condition="context/show_description" class="documentDescription" tal:content="context/description" />
+
+        <div tal:replace="structure provider:plone.abovecontentbody" />
+
+        <div class="row" tal:repeat="pageitem view/pagecontents">
+
+          <a tal:condition="python: pageitem.portal_type == 'Link'" href="" tal:attributes="href pageitem/remoteUrl; title pageitem/title">
+
+            <div class="col-12 col-md-4"><img tal:condition="pageitem/image" class="img-fluid rounded" 
+                                              tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
+                                                              title pageitem/title;
+                                                              alt pageitem/image_caption;">
+            </div>
+            <div class="col-12 col-md-8">
+              <h2 tal:content="pageitem/title"/>
+              <p class="documentDescription" tal:content="pageitem/description"/>
+            </div>
+
+          </a>
+          
+          <div tal:condition="python: pageitem.portal_type == 'Card'" tal:attributes="class pageitem/cardclass">
+            <img tal:condition="pageitem/cardimage" class="card-img-top" tal:attributes="src python:pageitem.absolute_url() + '/@@images/cardimage';
+	                                                                                 title pageitem/title;
+								                         alt pageitem/image_caption">
+            <h5 tal:condition="pageitem/cardheader" class="card-header" tal:content="pageitem/cardheader"/>
+            <div class="card-body">
+              <h5 class="card-title" tal:content="pageitem/title">
+              <p tal:condition="pageitem/description" class="card-text" tal:content="pageitem/description"/>
+              <a tal:condition="pageitem/calltoaction" tal:attributes="href pageitem/calltoaction; class pageitem/buttonclass"/>
+            </div>
+	    <div tal:condition="pageitem/cardfooter" class="card-footer text-muted">
+              <span tal:replace="pageitem/cardfooter"/>
+            </div>
+          </div>
+
+        </div>
+
+        <div tal:replace="structure provider:plone.belowcontentbody" />
+
+      </div>
+
+    </tal:main-macro>
+</metal:main>
+
 </body>
 </html>
