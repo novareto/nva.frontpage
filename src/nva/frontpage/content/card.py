@@ -22,6 +22,10 @@ class ICard(model.Schema):
 
     cardimage = NamedBlobImage(title=u"Titelbild der Karte", required=False)
 
+    image_caption = schema.TextLine(title=u"Bildbeschreibung", required=False)
+
+    cardfooter = schema.Text(title="Fuss der Karte", required=False)
+
 
 @implementer(ICard)
 class Card(Item):
