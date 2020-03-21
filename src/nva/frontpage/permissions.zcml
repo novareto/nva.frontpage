@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="nva.frontpage.AddCard"
+        title="nva.frontpage: Add Card"
+    />
+
+
+    <permission
         id="nva.frontpage.AddLandingpage"
         title="nva.frontpage: Add Landingpage"
     />
