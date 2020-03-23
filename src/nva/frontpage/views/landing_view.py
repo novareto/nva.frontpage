@@ -2,6 +2,7 @@
 
 from nva.frontpage import _
 from Products.Five.browser import BrowserView
+from plone import api as ploneapi
 
 # from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
@@ -13,5 +14,17 @@ class LandingView(BrowserView):
 
     def __call__(self):
         # Implement your own actions:
-        self.msg = _(u'A small message')
+        self.pagecontents = self.get_pagecontents()
         return self.index()
+
+    def get_pagecontents(self):
+        return self.context.listFolderContents()
+
+    def getRemote(self, item):
+        remote = item.remoteUrl
+        if 'resolveuid' in remote:
+            uid = remote.split('/')[-1]
+            obj = ploneapi.content.get(UID=uid)
+            if obj:
+                return obj.absolute_url()
+        return remote

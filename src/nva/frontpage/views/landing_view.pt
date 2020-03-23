@@ -24,34 +24,44 @@
 
         <div class="row" tal:repeat="pageitem view/pagecontents">
 
-          <a tal:condition="python: pageitem.portal_type == 'Link'" href="" tal:attributes="href pageitem/remoteUrl; title pageitem/title">
-
-            <div class="col-12 col-md-4"><img tal:condition="pageitem/image" class="img-fluid rounded" 
-                                              tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
-                                                              title pageitem/title;
-                                                              alt pageitem/image_caption;">
-            </div>
-            <div class="col-12 col-md-8">
-              <h2 tal:content="pageitem/title"/>
+          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-4">
+	    <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
+              <img tal:condition="pageitem/image" class="img-fluid rounded" 
+                   tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
+                                     title pageitem/title;
+                                     alt pageitem/image_caption;">
+            </a>		
+          </div>
+          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-8">
+            <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
+              <h2 class="mt-3" tal:content="pageitem/title"/>
               <p class="documentDescription" tal:content="pageitem/description"/>
-            </div>
+	    </a>  
+          </div>
 
-          </a>
-          
           <div tal:condition="python: pageitem.portal_type == 'Card'" tal:attributes="class pageitem/cardclass">
+
             <img tal:condition="pageitem/cardimage" class="card-img-top" tal:attributes="src python:pageitem.absolute_url() + '/@@images/cardimage';
-	                                                                                 title pageitem/title;
-								                         alt pageitem/image_caption">
-            <h5 tal:condition="pageitem/cardheader" class="card-header" tal:content="pageitem/cardheader"/>
-            <div class="card-body">
+                                                                                         title pageitem/title;
+                                                                                         alt pageitem/image_caption">
+	    <div tal:condition="pageitem/cardheader" class="card-header" tal:content="pageitem/cardheader"/>
+            <div class="card-body" tal:attributes="class pageitem/cardbodyclass">
               <h5 class="card-title" tal:content="pageitem/title">
               <p tal:condition="pageitem/description" class="card-text" tal:content="pageitem/description"/>
-              <a tal:condition="pageitem/calltoaction" tal:attributes="href pageitem/calltoaction; class pageitem/buttonclass"/>
+              <a tal:condition="pageitem/calltoaction" tal:content="pageitem/buttontext" 
+	         tal:attributes="href python:pageitem.calltoaction.to_object.absolute_url(); 
+                                 class pageitem/buttonclass"/>
             </div>
-	    <div tal:condition="pageitem/cardfooter" class="card-footer text-muted">
+            <div tal:condition="pageitem/cardfooter" class="card-footer text-muted">
               <span tal:replace="pageitem/cardfooter"/>
             </div>
+
           </div>
+
+
+
+
+
 
         </div>
 
