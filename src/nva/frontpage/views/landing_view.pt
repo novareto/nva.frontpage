@@ -28,9 +28,10 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <div class="row" tal:repeat="pageitem view/pagecontents">
+        <div class="row mb-3" tal:repeat="pageitem view/pagecontents">
 
           <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-4">
+            <a name="" tal:attributes="name python:pageitem.getId()"/>
 	    <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
               <img tal:condition="pageitem/image" class="img-fluid rounded" 
                    tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
@@ -45,8 +46,18 @@
 	    </a>  
           </div>
 
+
+          <div tal:condition="python: pageitem.portal_type == 'Document'" class="col-12">
+            <a name="" tal:attributes="name python:pageitem.getId()"/>
+            <h2 class="display-3" tal:content="pageitem/title"/>
+            <p tal:condition="pageitem/description" class="documentDescription" tal:content="pageitem/description"/>
+            <span tal:condition="pageitem/text" tal:replace="structure pageitem/text/output"/>
+          </div>
+
+
           <div tal:condition="python: pageitem.portal_type == 'Card'" tal:attributes="class pageitem/cardclass">
 
+            <a name="" tal:attributes="name python:pageitem.getId()"/>
             <img tal:condition="pageitem/cardimage" class="card-img-top" tal:attributes="src python:pageitem.absolute_url() + '/@@images/cardimage';
                                                                                          title pageitem/title;
                                                                                          alt pageitem/image_caption">
