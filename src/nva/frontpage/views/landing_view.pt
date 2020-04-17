@@ -28,6 +28,10 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
+        <!--<div class="row mb-3" tal:repeat="pageitem view/pagecontents">
+		<span tal:replace="structure pageitem"/>
+	</div>-->			
+
         <div class="row mb-3" tal:repeat="pageitem view/pagecontents">
 
           <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-4">
@@ -39,6 +43,7 @@
                                      alt pageitem/image_caption;">
             </a>		
           </div>
+
           <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-8">
             <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
               <h2 class="mt-3" tal:content="pageitem/title"/>
@@ -46,6 +51,25 @@
 	    </a>  
           </div>
 
+
+	  <div tal:condition="python: pageitem.portal_type == 'Collection'" class="col-12 jumbotron jumbotron-fluid rounded pt-4 pb-4">
+            <div class="container">		  
+            <h3 tal:content="pageitem/title"/>		  
+	    <div class="card-deck" tal:define="decks python:view.getCollectionEntries(pageitem)" tal:repeat="deck decks">
+              <div tal:repeat="item deck" class="card bg-light" style="width: 10rem;">
+		  <a tal:attributes="href item/url">
+		  <img tal:replace="structure python:item.get('image').replace('img-fluid', 'img-fluid card-img-top')">
+                  <div class="card-body">
+			  <!--<h6 class="card-title" tal:content="item/title">Card title</h6>-->
+			  <!--<p class="card-text" tal:content="item/title"></p>-->
+		  <h5 tal:content="item/title"></h5>
+		  <!--<a href="" tal:attributes="href item/url" class="card-link float-right mt-3">lerne mehr</a>-->
+                  </div>
+		  </a>
+              </div>
+            </div>
+	    </div>
+          </div>
 
           <div tal:condition="python: pageitem.portal_type == 'Document'" class="col-12">
             <a name="" tal:attributes="name python:pageitem.getId()"/>

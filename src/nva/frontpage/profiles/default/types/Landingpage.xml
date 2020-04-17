@@ -23,6 +23,7 @@
   <property name="allowed_content_types">
     <element value="Card" />
     <element value="Link" />
+    <element value="Collection" />
     <element value="Document" />
   </property>
   <!-- Schema, class and security -->
