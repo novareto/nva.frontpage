@@ -3,8 +3,6 @@
 from nva.frontpage import _
 from Products.Five.browser import BrowserView
 from plone import api as ploneapi
-from nva.frontpage.views.createMyLinkSnippet import createLinkSnippet
-
 
 class LandingView(BrowserView):
 
