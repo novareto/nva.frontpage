@@ -28,9 +28,11 @@
 
         <div tal:replace="structure provider:plone.abovecontentbody" />
 
-        <!--<div class="row mb-3" tal:repeat="pageitem view/pagecontents">
-		<span tal:replace="structure pageitem"/>
-	</div>-->			
+        <div tal:condition="context/text" class="row mb-3">
+          <div class="col-12">
+            <span tal:replace="structure context/text/output"/>
+          </div>
+	</div>			
 
         <div class="row mb-3" tal:repeat="pageitem view/pagecontents">
 
@@ -52,13 +54,17 @@
           </div>
 
 
-	  <div tal:condition="python: pageitem.portal_type == 'Collection'" class="col-12 jumbotron jumbotron-fluid rounded pt-4 pb-4">
+	  <div tal:condition="python: pageitem.portal_type in ['Collection', 'Folder']" class="col-12 jumbotron jumbotron-fluid rounded pt-4 pb-4">
             <div class="container">		  
             <h3 tal:content="pageitem/title"/>		  
 	    <div class="card-deck" tal:define="decks python:view.getCollectionEntries(pageitem)" tal:repeat="deck decks">
-              <div tal:repeat="item deck" class="card bg-light" style="width: 10rem;">
+              <div tal:repeat="item deck" class="card bg-light">
 		  <a tal:attributes="href item/url">
 		  <img tal:replace="structure python:item.get('image').replace('img-fluid', 'img-fluid card-img-top')">
+                  <div tal:condition="python: not item.get('topimage') and item.get('video')" 
+                       tal:attributes="class python:item['video']['videoformat']">
+                    <span tal:replace="structure item/video/embed"/>
+                  </div>
                   <div class="card-body">
 			  <!--<h6 class="card-title" tal:content="item/title">Card title</h6>-->
 			  <!--<p class="card-text" tal:content="item/title"></p>-->

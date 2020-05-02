@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="nva.frontpage.AddVorschau"
+        title="nva.frontpage: Add Vorschau"
+    />
+
+
+    <permission
         id="nva.frontpage.AddCard"
         title="nva.frontpage: Add Card"
     />
