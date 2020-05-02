@@ -7,6 +7,12 @@
   <!-- -*- extra stuff goes here -*- -->
 
     <permission
+        id="nva.frontpage.AddTextblock"
+        title="nva.frontpage: Add Textblock"
+    />
+
+
+    <permission
         id="nva.frontpage.AddVorschau"
         title="nva.frontpage: Add Vorschau"
     />
