@@ -27,8 +27,27 @@ class LandingView(BrowserView):
                 return obj.absolute_url()
         return remote
 
+    def formatEvent(self, item):
+        event = u''
+        if item.start and item.end:
+            event = "%s-%s" % (item.start.strftime('%d.%m.%Y'), item.end.strftime('%d.%m.%Y'))
+        elif item.start and not item.end:
+            event = "%s" % item.start.strftime('%d.%m.%Y')
+        if item.location:
+            event += ", %s" %item.location
+        return event
+            
     def getCollectionEntries(self, item):
+        data = {'cards':[], 'morelink':None}
         artikel = ploneapi.content.get_view('enhanced_foldersummary', item, self.request).contentlist()
-        size = 4
-        cards = [artikel[i:i+size] for i in range(0, len(artikel), size)]
-        return cards
+        if item.deckshape == '1-4-0':
+            if len(artikel) > 4:
+                artikel = artikel[:4]
+                data['morelink'] = item.decklink #Der Link mit weiteren Objekten muss angezeigt werden
+            data['cards'] = artikel
+        elif item.deckshape == '2-3-4':
+            if len(artikel) > 7:
+                artikel = artikel[:7]
+                data['morelink'] = item.decklink #Der Link mit weiteren Objekten muss angezeigt werden
+            data['cards'] = [artikel[:3], artikel[3:]]
+        return data

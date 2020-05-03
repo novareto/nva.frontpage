@@ -7,12 +7,13 @@
       i18n:domain="example.conference">
 <body>
 
-<metal:main fill-slot="main">
-    <tal:main-macro metal:define-macro="main">
+<metal:body fill-slot="body">
+    <tal:body-macro metal:define-macro="body">
 
-      <div class="container mt-n3">
 
-        <div tal:replace="structure provider:plone.abovecontenttitle" />
+      <div class="container-fluid mt-n3">
+
+	<!--<div tal:replace="structure provider:plone.abovecontenttitle" />-->
 
         <div class="row">
           <div class="col-md-12">
@@ -22,7 +23,7 @@
 	  </div>
         </div>
 
-        <div tal:replace="structure provider:plone.belowcontenttitle" />
+	<!--<div tal:replace="structure provider:plone.belowcontenttitle" />-->
 
         <p tal:condition="context/show_description" class="documentDescription" tal:content="context/description" />
 
@@ -34,59 +35,275 @@
           </div>
 	</div>			
 
-        <div class="row mb-3" tal:repeat="pageitem view/pagecontents">
-
-          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-4">
-            <a name="" tal:attributes="name python:pageitem.getId()"/>
-	    <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
-              <img tal:condition="pageitem/image" class="img-fluid rounded" 
-                   tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
-                                     title pageitem/title;
-                                     alt pageitem/image_caption;">
-            </a>		
-          </div>
-
-          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-8">
-            <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
-              <h2 class="mt-3" tal:content="pageitem/title"/>
-              <p class="documentDescription" tal:content="pageitem/description"/>
-	    </a>  
-          </div>
+	<div class="row mb-3" tal:repeat="pageitem view/pagecontents"><!-- Start Iteration Pageitems -->
 
 
-	  <div tal:condition="python: pageitem.portal_type in ['Collection', 'Folder']" class="col-12 jumbotron jumbotron-fluid rounded pt-4 pb-4">
-            <div class="container">		  
-            <h3 tal:content="pageitem/title"/>		  
-	    <div class="card-deck" tal:define="decks python:view.getCollectionEntries(pageitem)" tal:repeat="deck decks">
-              <div tal:repeat="item deck" class="card bg-light">
-		  <a tal:attributes="href item/url">
-		  <img tal:replace="structure python:item.get('image').replace('img-fluid', 'img-fluid card-img-top')">
-                  <div tal:condition="python: not item.get('topimage') and item.get('video')" 
-                       tal:attributes="class python:item['video']['videoformat']">
-                    <span tal:replace="structure item/video/embed"/>
-                  </div>
-                  <div class="card-body">
-			  <!--<h6 class="card-title" tal:content="item/title">Card title</h6>-->
-			  <!--<p class="card-text" tal:content="item/title"></p>-->
-		  <h5 tal:content="item/title"></h5>
-		  <!--<a href="" tal:attributes="href item/url" class="card-link float-right mt-3">lerne mehr</a>-->
-                  </div>
-		  </a>
-              </div>
+          <!-- Vorschau stage -->		
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" class="container-fluid p-0">
+            <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image" class="img-fluid">
+          </div>  
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" 
+               style="height:180px;margin-top:-180px;background:rgba(9,78,159,0.8);" class="d-none d-lg-block container-fluid">
+            <div class="row mt-3 mb-3">        
+            <div class="col-md-2 d-none d-md-block"></div>
+            <div class="col-12 col-md-8">
+              <h5 class="text-white" tal:content="pageitem/dachzeile"/>
+              <h1 class="text-white display-4" tal:content="pageitem/title"/>
+              <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
             </div>
-	    </div>
+            <div class="col-md-2 d-none d-md-block"></div>
+            </div>
           </div>
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" 
+               style="height:180px;background:#004994;" class="d-md-block d-lg-none container-fluid">
+            <div class="row mt-3 mb-3">        
+            <div class="col-md-2 d-none d-md-block"></div>
+            <div class="col-12 col-md-8">
+              <h5 class="text-white" tal:content="pageitem/dachzeile"/>
+              <h1 class="text-white display-4" tal:content="pageitem/title"/>
+              <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+            </div>
+            <div class="col-md-2 d-none d-md-block"></div>
+            </div>
+          </div>
+	  <!-- Ende Vorschau stage -->
 
+
+	  <!-- Vorschau left-top -->
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'left-top'"
+               tal:attributes="id pageitem/id;
+	                       class string:container-fluid mb-5 ${pageitem/blockclass}">
+	    <div class="row mt-5">
+              <div class="col-md-3 d-none d-md-block"></div>
+	      <div class="col-12 col-md-4">
+                <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image/large" class="img-fluid">
+	      </div>
+              <div class="col-md-5 d-none d-md-block"></div>
+	    </div>
+	    <div class="row mt-5">
+              <div class="col-md-5 d-none d-md-block"></div>
+	      <div class="col-12 col-md-4">
+                <h5 tal:content="pageitem/dachzeile"/>
+                <h1 class="display-4" tal:content="pageitem/title"/>
+		<p tal:content="pageitem/description"/>
+                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+              </div>
+              <div class="col-md-3 d-none d-md-block"></div>
+	    </div>
+	  </div>
+	  <!-- Ende Vorschau left-top -->
+
+
+	  <!-- Vorschau right-top -->
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'right-top'"
+               tal:attributes="id pageitem/id;
+                               class string:container-fluid mb-5 ${pageitem/blockclass}">
+            <div class="row mt-5">
+              <div class="col-md-5 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image/large" class="img-fluid">
+              </div>
+              <div class="col-md-3 d-none d-md-block"></div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-3 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <h5 tal:content="pageitem/dachzeile"/>
+                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p tal:content="pageitem/description"/>
+                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+              </div>
+              <div class="col-md-5 d-none d-md-block"></div>
+            </div>
+          </div>
+	  <!-- Ende Vorschau right-top -->
+
+
+          <!-- Vorschau left-bottom -->
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'left-bottom'"
+               tal:attributes="id pageitem/id;
+                               class string:container-fluid mb-5 ${pageitem/blockclass}">
+            <div class="row mt-5">
+              <div class="col-md-5 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <h5 tal:content="pageitem/dachzeile"/>
+                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p tal:content="pageitem/description"/>
+                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+              </div>
+              <div class="col-md-3 d-none d-md-block"></div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-3 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image/large" class="img-fluid">
+              </div>
+              <div class="col-md-5 d-none d-md-block"></div>
+            </div>
+          </div>
+          <!-- Ende Vorschau left-bottom -->
+
+
+          <!-- Vorschau right-bottom -->
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'right-bottom'"
+               tal:attributes="id pageitem/id;
+                               class string:container-fluid mb-5 ${pageitem/blockclass}">
+            <div class="row mt-5">
+              <div class="col-md-3 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <h5 tal:content="pageitem/dachzeile"/>
+                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p tal:content="pageitem/description"/>
+                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+              </div>
+              <div class="col-md-5 d-none d-md-block"></div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-md-5 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image/large" class="img-fluid">
+              </div>
+              <div class="col-md-3 d-none d-md-block"></div>
+            </div>
+          </div>
+          <!-- Ende Vorschau right-bottom -->
+
+
+          <!-- Vorschau Textblock -->
+          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'textblock'"
+               tal:attributes="id pageitem/id;
+                               class string:container-fluid mb-5 ${pageitem/blockclass}">
+            <div class="row mt-5">
+              <div class="col-md-4 d-none d-md-block"></div>
+              <div class="col-12 col-md-4">
+                <span tal:replace="structure pageitem/text/output"/>
+              </div>
+              <div class="col-md-5 d-none d-md-block"></div>
+            </div>
+          </div>
+          <!-- Ende Vorschau Textblock -->
+
+
+          <!-- Folder & Collection -->
+	  <div tal:condition="python: pageitem.portal_type in ['Collection', 'Folder']"
+	       tal:attributes="id pageitem/id;
+	                       class pageitem/deckclass">
+
+            <!-- Shape 1-4-0 -->		  
+            <div tal:condition="python: pageitem.deckshape == '1-4-0'" class="container-fluid pb-5"
+		 tal:define="itemcontent python:view.getCollectionEntries(pageitem);
+                             deck python:itemcontent.get('cards');
+                             morelink python:itemcontent.get('morelink')">
+	      <div class="row">	    
+	        <div class="col-md-2 d-none d-md-block"></div>
+	        <div class="col-12 col-md-8">
+                  <h5 tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>		  
+	          <div class="card-deck mb-3">
+		    <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
+		      <a tal:attributes="href item/url">
+		        <img tal:attributes="src python:item.get('img-mini')" class="p-3">
+                        <div tal:condition="python: not item.get('img-mini') and item.get('video')" 
+                             tal:attributes="class python:item['video']['videoformat']">
+                          <span tal:replace="structure item/video/embed"/>
+                        </div>
+                        <div class="card-body">
+			  <h6 style="font-weight:bold;" tal:content="item/title"/>
+			  <p style="font-size:12pt; color:#555555" tal:content="item/description"/>
+			  <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
+			    <span tal:content="item/fullevent"/>
+		          </p>
+                        </div>
+		      </a>
+                    </div>
+                  </div>
+	          <a class="float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
+	        </div>
+	        <div class="col-md-2 d-none d-md-block"></div>
+	      </div>
+	    </div>
+	    <!-- Ende Shape 1-4-0 -->
+
+            <!-- Shape 2-3-4 -->
+            <div tal:condition="python: pageitem.deckshape == '2-3-4'" class="container-fluid pb-5"
+                 tal:define="itemcontent python:view.getCollectionEntries(pageitem);
+                             decks python:itemcontent.get('cards');
+                             morelink python:itemcontent.get('morelink')">
+              <div class="row">
+                <div class="col-md-2 d-none d-md-block"></div>
+                <div class="col-12 col-md-8">
+                  <h5 tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>
+                  <div tal:define="deck python: decks[0]" tal:condition="deck" class="card-deck mb-3">
+                    <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
+                      <a tal:attributes="href item/url">
+                        <img tal:attributes="src python:item.get('img-preview')" class="card-img-top">
+                        <div tal:condition="python: not item.get('img-preview') and item.get('video')" 
+                             tal:attributes="class python:item['video']['videoformat']">
+                          <span tal:replace="structure item/video/embed"/>
+                        </div>
+                        <div class="card-body">
+                          <h6 style="font-weight:bold;" tal:content="item/title"/>
+                          <p style="font-size:12pt; color:#555555" tal:content="item/description"/>
+                          <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
+                            <span tal:content="item/fullevent"/>
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 d-none d-md-block"></div>
+              </div>
+	      <div class="row">
+	        <div class="col-md-2 d-none d-md-block"></div>
+		<div class="col-12 col-md-8"><hr></div>
+	        <div class="col-md-2 d-none d-md-block"></div>
+              </div>		
+              <div class="row">
+                <div class="col-md-2 d-none d-md-block"></div>
+                <div class="col-12 col-md-8">
+                  <div tal:define="deck python: decks[1]" tal:condition="deck" class="card-deck mb-3">
+                    <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
+                      <a tal:attributes="href item/url">
+                        <img tal:attributes="src python:item.get('img-thumb')" class="p-3">
+                        <div tal:condition="python: not item.get('img-thumb') and item.get('video')" 
+                             tal:attributes="class python:item['video']['videoformat']">
+                          <span tal:replace="structure item/video/embed"/>
+                        </div>
+                        <div class="card-body">
+			  <p style="font-size:12pt; color:#555555" tal:content="item/dachzeile"/>
+                          <h6 style="font-weight:bold;" tal:content="item/title"/>
+                          <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
+                            <span tal:content="item/fullevent"/>
+                          </p>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                  <a class="float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
+                </div>
+                <div class="col-md-2 d-none d-md-block"></div>
+              </div>
+
+            </div>
+            <!-- Ende Shape 2-3-4 -->
+
+          </div>
+	  <!-- Ende Folder & Collection -->
+
+
+          <!-- Old Template Snippets -->
+	  <!-- Card -->
           <div tal:condition="python: pageitem.portal_type == 'Document'" class="col-12">
             <a name="" tal:attributes="name python:pageitem.getId()"/>
             <h2 class="display-3" tal:content="pageitem/title"/>
             <p tal:condition="pageitem/description" class="documentDescription" tal:content="pageitem/description"/>
             <span tal:condition="pageitem/text" tal:replace="structure pageitem/text/output"/>
           </div>
+	  <!-- Ende Card -->
 
 
+	  <!-- Document -->
           <div tal:condition="python: pageitem.portal_type == 'Card'" tal:attributes="class pageitem/cardclass">
-
             <a name="" tal:attributes="name python:pageitem.getId()"/>
             <img tal:condition="pageitem/cardimage" class="card-img-top" tal:attributes="src python:pageitem.absolute_url() + '/@@images/cardimage';
                                                                                          title pageitem/title;
@@ -102,22 +319,39 @@
             <div tal:condition="pageitem/cardfooter" class="card-footer text-muted">
               <span tal:replace="pageitem/cardfooter"/>
             </div>
+	  </div>
+	  <!-- Ende Dokument -->
 
+	  <!-- Link -->
+          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-4">
+            <a name="" tal:attributes="name python:pageitem.getId()"/>
+            <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
+              <img tal:condition="pageitem/image" class="img-fluid rounded" 
+                   tal:attributes="src python: pageitem.absolute_url() + '/@@images/image';
+                                     title pageitem/title;
+                                     alt pageitem/image_caption;">
+            </a>                
           </div>
 
+          <div tal:condition="python: pageitem.portal_type == 'Link'" class="col-12 col-md-8">
+            <a href="" tal:attributes="href python:view.getRemote(pageitem); title pageitem/title">
+              <h2 class="mt-3" tal:content="pageitem/title"/>
+              <p class="documentDescription" tal:content="pageitem/description"/>
+            </a>  
+          </div>
+	  <!-- Ende Link -->
+	  <!-- Ende Old Template Snippets -->
 
 
 
-
-
-        </div>
+	</div><!-- Ende Pageitems -->
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
       </div>
 
-    </tal:main-macro>
-</metal:main>
+    </tal:body-macro>
+</metal:body>
 
 </body>
 </html>

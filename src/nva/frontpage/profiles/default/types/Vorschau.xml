@@ -10,7 +10,7 @@
       name="title">Vorschau</property>
   <property
       i18n:translate=""
-      name="description">Ein Vorschau-Element auf der Startseite zeigt Dachzeile, Titel, Kurzbeschreibung, einen Link und ein Vorschaubild</property>
+      name="description">Ein Vorschau-Element fuer die Landingpage</property>
 
   <property name="allow_discussion">False</property>
   <property name="factory">Vorschau</property>
@@ -19,6 +19,11 @@
 
   <!-- Hierarchy control -->
   <property name="global_allow">False</property>
+  <property name="filter_content_types">True</property>
+  <property name="allowed_content_types">
+    <element value="Image" />
+  </property>
+
   <!-- Schema, class and security -->
   <property name="add_permission">nva.frontpage.AddVorschau</property>
   <property name="klass">nva.frontpage.content.vorschau.Vorschau</property>

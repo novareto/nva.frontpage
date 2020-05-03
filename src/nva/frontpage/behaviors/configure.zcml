@@ -11,8 +11,8 @@
 
     <plone:behavior
         name="nva.frontpage.landing_page_shape"
-        title="LandingPageShape"
-        description="This behavior provides data for landing_view."
+        title="LandingPage"
+        description="Dieses Behavior definiert Daten fuer den landing_view."
         provides=".landing_page_shape.ILandingPageShape"
         factory=".landing_page_shape.LandingPageShape"
         marker=".landing_page_shape.ILandingPageShapeMarker"
