@@ -21,14 +21,9 @@
   <property name="global_allow">True</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-    <element value="Textblock" />
     <element value="Vorschau" />
-    <element value="Image" />
-    <element value="Link" />
-    <element value="Card" />
     <element value="Folder" />
     <element value="Collection" />
-    <element value="Document" />
   </property>
   <!-- Schema, class and security -->
   <property name="add_permission">nva.frontpage.AddLandingpage</property>
