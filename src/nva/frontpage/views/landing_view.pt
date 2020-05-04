@@ -185,7 +185,7 @@
 
 
           <!-- Folder & Collection -->
-	  <div tal:condition="python: pageitem.portal_type in ['Collection', 'Folder']"
+	  <div style="width:100% !important" tal:condition="python: pageitem.portal_type in ['Collection', 'Folder']"
 	       tal:attributes="id pageitem/id;
 	                       class pageitem/deckclass">
 
