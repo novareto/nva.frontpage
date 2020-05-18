@@ -1,0 +1,80 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+   xmlns:tal="http://xml.zope.org/namespaces/tal"
+   xmlns:metal="http://xml.zope.org/namespaces/metal"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+   lang="en"
+   metal:use-macro="context/main_template/macros/master"
+   i18n:domain="example.conference">
+   <body>
+      <metal:body fill-slot="body" >
+         <tal:body-macro metal:define-macro="stage">
+            <!-- Vorschau stage -->
+            <!--  Wird aus Vorschau aufgerufen -->
+            <div tal:condition="python: hasattr(view, 'vorschau')"
+               tal:attributes="id python: view.context.id;
+               class string:container-fluid mb-5 ${python: view.vorschau.get('blockclass')}">
+               <div class="container-fluid p-0">
+                  <img tal:attributes="src string:${python:view.vorschau.get('url')}/@@images/image" class="img-fluid">
+               </div>
+               <div
+                  style="height:180px;margin-top:-180px;background:rgba(9,78,159,0.8);" class="d-none d-lg-block container-fluid">
+                  <div class="row mt-3 mb-3">
+                     <div class="col-md-2 d-none d-md-block"></div>
+                     <div class="col-12 col-md-8">
+                        <h5 class="text-white" tal:content="python: view.vorschau.get('dachzeile')"/>
+                        <h1 class="text-white display-4" tal:content="python: view.vorschau.get('title')"/>
+                        <a class="text-white"  tal:attributes="href python:view.vorschau.get('verweis')" tal:content="python: view.vorschau.get('linktitle')">mehr erfahren</a>
+                     </div>
+                     <div class="col-md-2 d-none d-md-block"></div>
+                  </div>
+               </div>
+               <div
+                  style="height:180px;background:#004994;" class="d-md-block d-lg-none container-fluid">
+                  <div class="row mt-3 mb-3">
+                     <div class="col-md-2 d-none d-md-block"></div>
+                     <div class="col-12 col-md-8">
+                        <h5 class="text-white" tal:content="python: view.vorschau.get('dachzeile')"/>
+                        <h1 class="text-white display-4" tal:content="python: view.vorschau.get('title')"/>
+                        <a class="text-white" tal:attributes="href python:view.vorschau.get('verweis')" tal:content="python: view.vorschau.get('linktitle')">mehr erfahren</a>
+                     </div>
+                     <div class="col-md-2 d-none d-md-block"></div>
+                  </div>
+               </div>
+            </div>
+            <!--  Wird aus Landingpage aufgerufen -->
+            <div tal:condition="python: not hasattr(view, 'vorschau')"
+               tal:attributes="id python: view.context.id;
+               class string:container-fluid mb-5 ${python:pageitem.blockclass}">
+               <div class="container-fluid p-0">
+                  <img tal:attributes="src string:${python:pageitem.url}/@@images/image" class="img-fluid">
+               </div>
+               <div
+                  style="height:180px;margin-top:-180px;background:rgba(9,78,159,0.8);" class="d-none d-lg-block container-fluid">
+                  <div class="row mt-3 mb-3">
+                     <div class="col-md-2 d-none d-md-block"></div>
+                     <div class="col-12 col-md-8">
+                        <h5 class="text-white" tal:content="python: pageitem.dachzeile"/>
+                        <h1 class="text-white display-4" tal:content="python: pageitem.title"/>
+                        <a class="text-white" tal:attributes="href python:pageitem.verweis" tal:content="python: pageitem.linktitle">mehr erfahren</a>
+                     </div>
+                     <div class="col-md-2 d-none d-md-block"></div>
+                  </div>
+               </div>
+               <div
+                  style="height:180px;background:#004994;" class="d-md-block d-lg-none container-fluid">
+                  <div class="row mt-3 mb-3">
+                     <div class="col-md-2 d-none d-md-block"></div>
+                     <div class="col-12 col-md-8">
+                        <h5 class="text-white" tal:content="python: pageitem.dachzeile"/>
+                        <h1 class="text-white display-4" tal:content="python: pageitem.title"/>
+                        <a class="text-white" tal:attributes="href python:pageitem.verweis" tal:content="python: pageitem.linktitle">mehr erfahren</a>
+                     </div>
+                     <div class="col-md-2 d-none d-md-block"></div>
+                  </div>
+               </div>
+            </div>
+            <!-- Ende Vorschau stage -->
+         </tal:body-macro>
+      </metal:body>
+   </body>
+</html>

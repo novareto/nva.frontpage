@@ -56,11 +56,16 @@
 
   <!-- View information -->
   <property name="add_view_expr">string:${folder_url}/++add++Vorschau</property>
-  <property name="default_view">view</property>
+  <property name="default_view">stage</property>
   <property name="default_view_fallback">False</property>
-  <property name="immediate_view">view</property>
+  <property name="immediate_view">stage</property>
   <property name="view_methods">
-    <element value="view"/>
+    <element value="stage"/>
+    <element value="textblock"/>
+    <element value="lefttop"/>
+    <element value="leftbottom"/>
+    <element value="righttop"/>
+    <element value="rightbottom"/>
   </property>
 
   <!-- Method aliases -->

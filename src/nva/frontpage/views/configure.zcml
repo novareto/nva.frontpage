@@ -13,5 +13,47 @@
     template="landing_view.pt"
     permission="zope2.View"
     />
+    <browser:page
+    name="stage"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauStageView"
+    template="templates/vorschau/vorschau_stage_view.pt"
+    permission="zope2.View"
+    />
+     <browser:page
+    name="textblock"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauTextblockView"
+    template="templates/vorschau/vorschau_textblock_view.pt"
+    permission="zope2.View"
+    />
+     <browser:page
+    name="lefttop"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauLeftTopView"
+    template="templates/vorschau/vorschau_left-top_view.pt"
+    permission="zope2.View"
+    />
+     <browser:page
+    name="leftbottom"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauLeftBottomView"
+    template="templates/vorschau/vorschau_left-bottom_view.pt"
+    permission="zope2.View"
+    />
+     <browser:page
+    name="righttop"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauRightTopView"
+    template="templates/vorschau/vorschau_right-top_view.pt"
+    permission="zope2.View"
+    />
+     <browser:page
+    name="rightbottom"
+    for="nva.frontpage.content.vorschau.IVorschau"
+    class=".vorschau_view.VorschauRightBottomView"
+    template="templates/vorschau/vorschau_right-bottom_view.pt"
+    permission="zope2.View"
+    />
 
 </configure>
