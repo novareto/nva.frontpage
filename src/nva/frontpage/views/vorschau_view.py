@@ -72,7 +72,6 @@ class VorschauRightBottomView(BrowserView):
 
 class VorschauRightTopView(BrowserView):
     template = ViewPageTemplateFile('templates/vorschau/vorschau_right-top_view.pt')
-
     def __call__(self):
         self.vorschau = self.context
         if self.context.verweis:
