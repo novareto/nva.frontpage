@@ -200,8 +200,8 @@
 	  <!-- Ende Old Template Snippets -->
 
 
-
 	</div><!-- Ende Pageitems -->
+
 
         <div tal:replace="structure provider:plone.belowcontentbody" />
 
