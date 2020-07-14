@@ -36,6 +36,17 @@ class LandingView(BrowserView):
         if item.location:
             event += ", %s" %item.location
         return event
+
+    def formatArtikel(self, artikel):
+        listofArtikel = []
+        for i in artikel:
+            elements = i.get('description').split(' ')
+            if len(elements) > 30:
+                elements = elements[:30]
+                elements.append('...')
+                i['description'] = ' '.join(elements)
+            listofArtikel.append(i)
+        return listofArtikel
             
     def getCollectionEntries(self, item):
         data = {'cards':[], 'morelink':None}
@@ -43,11 +54,13 @@ class LandingView(BrowserView):
         if item.deckshape == '1-4-0':
             if len(artikel) > 4:
                 artikel = artikel[:4]
+                artikel = self.formatArtikel(artikel)
                 data['morelink'] = item.decklink #Der Link mit weiteren Objekten muss angezeigt werden
             data['cards'] = artikel
         elif item.deckshape == '2-3-4':
             if len(artikel) > 7:
                 artikel = artikel[:7]
+                artikel = self.formatArtikel(artikel)
                 data['morelink'] = item.decklink #Der Link mit weiteren Objekten muss angezeigt werden
             data['cards'] = [artikel[:3], artikel[3:]]
         return data

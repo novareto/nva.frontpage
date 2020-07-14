@@ -199,8 +199,8 @@
 	        <div class="col-12 col-md-8">
                   <h5 tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>		  
 	          <div class="card-deck mb-3">
-		    <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
-		      <a tal:attributes="href item/url">
+		    <div tal:repeat="item deck" style="width: 24rem;" class="card border-0" 
+                         tal:attributes="class string:card border-0 ${pageitem/deckclass}">
 		        <img tal:attributes="src python:item.get('img-mini')" class="p-3">
                         <div tal:condition="python: not item.get('img-mini') and item.get('video')" 
                              tal:attributes="class python:item['video']['videoformat']">
@@ -213,7 +213,7 @@
 			    <span tal:content="item/fullevent"/>
 		          </p>
                         </div>
-		      </a>
+                        <a href="#" tal:attributes="href item/url" class="stretched-link"></a>
                     </div>
                   </div>
 	          <a class="float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
