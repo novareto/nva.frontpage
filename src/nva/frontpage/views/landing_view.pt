@@ -240,7 +240,7 @@
                              tal:attributes="class python:item['video']['videoformat']">
                           <span tal:replace="structure item/video/embed"/>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pl-0 pr-0">
                           <h6 style="font-weight:bold;" tal:content="item/title"/>
                           <p style="font-size:12pt; color:#555555" tal:content="item/description"/>
                           <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
@@ -264,12 +264,12 @@
                   <div tal:define="deck python: decks[1]" tal:condition="deck" class="card-deck mb-3">
                     <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
                       <a tal:attributes="href item/url">
-                        <img tal:attributes="src python:item.get('img-thumb')" class="p-3">
+                        <img tal:attributes="src python:item.get('img-thumb')" class="pl-0 pt-3 pr-3 pb-3">
                         <div tal:condition="python: not item.get('img-thumb') and item.get('video')" 
                              tal:attributes="class python:item['video']['videoformat']">
                           <span tal:replace="structure item/video/embed"/>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body pl-0 pr-0">
 			  <p style="font-size:12pt; color:#555555" tal:content="item/dachzeile"/>
                           <h6 style="font-weight:bold;" tal:content="item/title"/>
                           <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
