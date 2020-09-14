@@ -47,7 +47,7 @@
             <div class="row mt-3 mb-3">        
             <div class="col-md-2 d-none d-md-block"></div>
             <div class="col-12 col-md-8">
-              <h5 class="text-white" tal:content="pageitem/dachzeile"/>
+              <p class="text-white roof text-uppercase" tal:content="pageitem/dachzeile"/>
               <h1 class="text-white display-4" tal:content="pageitem/title"/>
               <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
             </div>
@@ -59,7 +59,7 @@
             <div class="row mt-3 mb-3">        
             <div class="col-md-2 d-none d-md-block"></div>
             <div class="col-12 col-md-8">
-              <h5 class="text-white" tal:content="pageitem/dachzeile"/>
+              <p class="text-white roof text-uppercase" tal:content="pageitem/dachzeile"/>
               <h1 class="text-white display-4" tal:content="pageitem/title"/>
               <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
             </div>
@@ -83,8 +83,8 @@
 	    <div class="row mt-5">
               <div class="col-md-5 d-none d-md-block"></div>
 	      <div class="col-12 col-md-4">
-                <h5 tal:content="pageitem/dachzeile"/>
-                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
+                <h2 class="display-4" tal:content="pageitem/title"/>
 		<p tal:content="pageitem/description"/>
                 <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
               </div>
@@ -108,8 +108,8 @@
             <div class="row mt-5">
               <div class="col-md-3 d-none d-md-block"></div>
               <div class="col-12 col-md-4">
-                <h5 tal:content="pageitem/dachzeile"/>
-                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
+                <h2 class="display-4" tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
                 <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
               </div>
@@ -126,8 +126,8 @@
             <div class="row mt-5">
               <div class="col-md-5 d-none d-md-block"></div>
               <div class="col-12 col-md-4">
-                <h5 tal:content="pageitem/dachzeile"/>
-                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
+                <h2 class="display-4" tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
                 <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
               </div>
@@ -151,8 +151,8 @@
             <div class="row mt-5">
               <div class="col-md-3 d-none d-md-block"></div>
               <div class="col-12 col-md-4">
-                <h5 tal:content="pageitem/dachzeile"/>
-                <h1 class="display-4" tal:content="pageitem/title"/>
+                <p class="roof text-uppercase"  tal:content="pageitem/dachzeile"/>
+                <h2 class="display-4" tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
                 <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
               </div>
@@ -172,7 +172,7 @@
           <!-- Vorschau Textblock -->
           <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'textblock'"
                tal:attributes="id pageitem/id;
-                               class string:container-fluid mb-5 ${pageitem/blockclass}">
+                               class string:container-fluid mb-5 ${pageitem/blockclass} textblock">
             <div class="row mt-5">
               <div class="col-md-4 d-none d-md-block"></div>
               <div class="col-12 col-md-4">
@@ -197,7 +197,7 @@
 	      <div class="row">	    
 	        <div class="col-md-2 d-none d-md-block"></div>
 	        <div class="col-12 col-md-8">
-                  <h5 tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>		  
+                  <p class="roof text-uppercase" tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>		  
 	          <div class="card-deck mb-3">
 		    <div tal:repeat="item deck" style="width: 24rem;" class="card border-0" 
                          tal:attributes="class string:card border-0 ${pageitem/deckclass}">
@@ -231,7 +231,7 @@
               <div class="row">
                 <div class="col-md-2 d-none d-md-block"></div>
                 <div class="col-12 col-md-8">
-                  <h5 tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>
+                  <p class="roof text-uppercase" tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>
                   <div tal:define="deck python: decks[0]" tal:condition="deck" class="card-deck mb-3">
                     <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
                       <a tal:attributes="href item/url">
