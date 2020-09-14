@@ -175,10 +175,10 @@
                                class string:container-fluid mb-5 ${pageitem/blockclass} textblock">
             <div class="row mt-5">
               <div class="col-md-4 d-none d-md-block"></div>
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-5">
                 <span tal:replace="structure pageitem/text/output"/>
               </div>
-              <div class="col-md-5 d-none d-md-block"></div>
+              <div class="col-md-3 d-none d-md-block"></div>
             </div>
           </div>
           <!-- Ende Vorschau Textblock -->
