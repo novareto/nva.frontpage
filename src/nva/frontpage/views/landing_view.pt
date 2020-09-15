@@ -18,9 +18,9 @@
         <div class="row">
           <div class="col-md-12">
             <h1 tal:condition="context/show_title" class="d-none d-sm-none d-lg-block display-2" tal:content="context/title" />
-	    <h1 tal:condition="context/show_title" class="d-none d-sm-block d-lg-none  mt-n3 display-3" tal:content="context/title" />
-	    <h2 tal:condition="context/show_title" class="d-sm-none mt-n5" tal:content="context/title" />
-	  </div>
+            <h1 tal:condition="context/show_title" class="d-none d-sm-block d-lg-none  mt-n3 display-3" tal:content="context/title" />
+            <h2 tal:condition="context/show_title" class="d-sm-none mt-n5" tal:content="context/title" />
+          </div>
         </div>
 
 	<!--<div tal:replace="structure provider:plone.belowcontenttitle" />-->
@@ -49,7 +49,7 @@
             <div class="col-12 col-md-8">
               <p class="text-white roof text-uppercase m-0" tal:content="pageitem/dachzeile"/>
               <h1 class="text-white mb-2" tal:content="pageitem/title"/>
-              <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+              <a class="more-link text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>
             </div>
             <div class="col-md-2 d-none d-md-block"></div>
             </div>
@@ -82,11 +82,11 @@
 	    </div>
 	    <div class="row mt-5">
               <div class="col-md-5 d-none d-md-block"></div>
-	      <div class="col-12 col-md-4">
+	      <div class="col-12 col-md-5">
                 <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
                 <h2 tal:content="pageitem/title"/>
 		<p tal:content="pageitem/description"/>
-                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+                <a class="more-link" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>
               </div>
               <div class="col-md-3 d-none d-md-block"></div>
 	    </div>
@@ -107,11 +107,11 @@
             </div>
             <div class="row mt-5">
               <div class="col-md-3 d-none d-md-block"></div>
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-5">
                 <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
                 <h2 tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
-                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+                <a class="more-link" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>                     
               </div>
               <div class="col-md-5 d-none d-md-block"></div>
             </div>
@@ -125,11 +125,11 @@
                                class string:container-fluid mb-5 ${pageitem/blockclass}">
             <div class="row mt-5">
               <div class="col-md-5 d-none d-md-block"></div>
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-5">
                 <p class="roof text-uppercase" tal:content="pageitem/dachzeile"/>
                 <h2 tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
-                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+                <a class="more-link" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>                     
               </div>
               <div class="col-md-3 d-none d-md-block"></div>
             </div>
@@ -150,11 +150,11 @@
                                class string:container-fluid mb-5 ${pageitem/blockclass}">
             <div class="row mt-5">
               <div class="col-md-3 d-none d-md-block"></div>
-              <div class="col-12 col-md-4">
+              <div class="col-12 col-md-5">
                 <p class="roof text-uppercase"  tal:content="pageitem/dachzeile"/>
                 <h2 tal:content="pageitem/title"/>
                 <p tal:content="pageitem/description"/>
-                <a tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
+                <a class="more-link" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>                     
               </div>
               <div class="col-md-5 d-none d-md-block"></div>
             </div>
@@ -197,7 +197,7 @@
 	      <div class="row">	    
 	        <div class="col-md-2 d-none d-md-block"></div>
 	        <div class="col-12 col-md-8">
-                  <p class="roof text-uppercase" tal:content="pageitem/title"/>		  
+            <div class="section-header" tal:content="pageitem/title">Section Title</div>
 	          <div class="card-deck mb-3">
 		    <div tal:repeat="item deck" class="card border-0" 
                          tal:attributes="class string:card border-0 ${pageitem/deckclass} m-0">
@@ -232,7 +232,7 @@
               <div class="row">
                 <div class="col-md-2 d-none d-md-block"></div>
                 <div class="col-12 col-md-8">
-                  <p class="roof text-uppercase" tal:content="pageitem/title" class="ml-4 mt-5 mb-3"/>
+                  <div class="section-header" tal:content="pageitem/title">Section Title</div>
                   <div tal:define="deck python: decks[0]" tal:condition="deck" class="card-deck mb-3">
                     <div tal:repeat="item deck" class="card border-0" tal:attributes="class string:card border-0 ${pageitem/deckclass}">
                       <a tal:attributes="href item/url">
