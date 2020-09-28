@@ -39,31 +39,16 @@
 
 
           <!-- Vorschau stage -->		
-          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" class="container-fluid p-0">
-            <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image" class="img-fluid">
-          </div>  
-          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" 
-               style="height:200px;margin-top:-200px;background:rgba(9,78,159,0.8);" class="d-none d-lg-block container-fluid">
-            <div class="row mt-4">        
-            <div class="col-md-2 d-none d-md-block"></div>
-            <div class="col-12 col-md-8">
-              <p class="text-white roof text-uppercase m-0" tal:content="pageitem/dachzeile"/>
-              <h1 class="text-white mb-2" tal:content="pageitem/title"/>
-              <a class="more-link text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>
-            </div>
-            <div class="col-md-2 d-none d-md-block"></div>
-            </div>
-          </div>
-          <div tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'" 
-               style="background:#004994;" class="d-md-block d-lg-none container-fluid">
-            <div class="row mt-3 mb-3">        
-            <div class="col-md-2 d-none d-md-block"></div>
-            <div class="col-12 col-md-8">
-              <p class="text-white roof text-uppercase" tal:content="pageitem/dachzeile"/>
-              <h1 class="text-white mb-2" tal:content="pageitem/title"/>
-              <a class="text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">mehr erfahren</a>                     
-            </div>
-            <div class="col-md-2 d-none d-md-block"></div>
+          <div id="vorschau-stage" tal:condition="python: pageitem.portal_type == 'Vorschau' and pageitem.blockshape == 'stage'">
+            <div class="stage-image">
+              <img tal:attributes="src string:${pageitem/absolute_url}/@@images/image" class="img-fluid">
+            </div>  
+            <div class="stage-overlay">
+              <div class="col-12 col-md-8 offset-md-2">
+                <p class="text-white roof text-uppercase m-0" tal:content="pageitem/dachzeile"/>
+                <h1 class="text-white mb-2" tal:content="pageitem/title"/>
+                <a class="more-link text-white" tal:attributes="href python:pageitem.format_link()" tal:content="pageitem/linktitle">Mehr erfahren</a>
+              </div>
             </div>
           </div>
 	  <!-- Ende Vorschau stage -->
