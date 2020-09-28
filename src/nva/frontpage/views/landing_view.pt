@@ -202,7 +202,7 @@
                         <a href="#" tal:attributes="href item/url" class="stretched-link"></a>
                     </div>
                   </div>
-	          <a class="float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
+	          <a class="section-more-link float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
 	        </div>
 	        <div class="col-md-2 d-none d-md-block"></div>
 	      </div>
@@ -228,7 +228,7 @@
                         </div>
                         <div class="card-body pl-0 pr-0">
                           <div class="card-body-roof">Dachzeile</div>
-                          <div class="card-item-title" tal:content="item/title">Title</div>
+                          <div class="card-body-title" tal:content="item/title">Title</div>
                           <p style="font-size:12pt; color:#555555" tal:content="item/description"/>
                           <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
                             <span tal:content="item/fullevent"/>
@@ -266,7 +266,7 @@
                       </a>
                     </div>
                   </div>
-                  <a class="float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
+                  <a class="section-more-link float-right mr-4" tal:condition="morelink" tal:attributes="href pageitem/absolute_url" tal:content="morelink"/>
                 </div>
                 <div class="col-md-2 d-none d-md-block"></div>
               </div>
