@@ -166,13 +166,12 @@
                       <div tal:condition="python: not item.get('img-mini') and item.get('video')" tal:attributes="class python:item['video']['videoformat']">
                         <span tal:replace="structure item/video/embed" />
                       </div>
-                      <div class="card-body">
-                        <img tal:attributes="src python:item.get('img-preview')" style="max-width:50%" class="img-fluid">
-                        <p class="h6 mt-3 text-primary font-weight-bold" tal:content="item/title" />
-                        <p style="font-size:12pt; color:#555555" tal:content="item/description" />
-                        <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
-                          <span tal:content="item/fullevent" />
-                        </p>
+                      <div class="card-body" tal:define="image python:item.get('img-preview')">
+                        <img src="" class="img-fluid card-body-img" tal:attributes="src image" tal:condition="image" />
+                        <p class="card-body-roof">Dachzeile</p><!-- replace with: <p class="card-roof" tal:content="item/dachzeile" tal:condition="item/dachzeile">Dachzeile</p> -->
+                        <p class="card-body-title" tal:content="item/title">Title</p>
+                        <p class="card-body-desc" tal:content="item/description">Description</p>
+                        <p class="card-body-content" tal:condition="python:item.get('type')=='Event'" tal:content="item/fullevent">Fullevent</p>
                       </div>
                       <a href="#" tal:attributes="href item/url" class="stretched-link"></a>
                     </div>
@@ -198,12 +197,10 @@
                           <span tal:replace="structure item/video/embed" />
                         </div>
                         <div class="card-body pl-0 pr-0">
-                          <div class="card-body-roof">Dachzeile</div>
-                          <div class="card-body-title" tal:content="item/title">Title</div>
-                          <p style="font-size:12pt; color:#555555" tal:content="item/description" />
-                          <p tal:condition="python:item.get('type')=='Event'" style="font-size:12pt; color:#000000; font-weight:bold">
-                            <span tal:content="item/fullevent" />
-                          </p>
+                          <p class="card-body-roof">Dachzeile</p><!-- replace with: <p class="card-roof" tal:content="item/dachzeile" tal:condition="item/dachzeile">Dachzeile</p> -->
+                          <p class="card-body-title" tal:content="item/title">Title</p>
+                          <p class="card-body-desc" tal:content="item/description">Description</p>
+                          <p class="card-body-content" tal:condition="python:item.get('type')=='Event'" tal:content="item/fullevent">Fullevent</p>
                         </div>
                       </a>
                     </div>
@@ -229,12 +226,9 @@
                           <span tal:replace="structure item/video/embed" />
                         </div>
                         <div class="card-body pl-0 pr-0">
-                          <p style="font-size:12pt; color:#555555" tal:content="item/dachzeile" />
-                          <p class="h6 font-weight-bold" tal:content="item/title" />
-                          <p tal:condition="python:item.get('type')=='Event'"
-                            style="font-size:12pt; color:#000000; font-weight:bold">
-                            <span tal:content="item/fullevent" />
-                          </p>
+                          <p class="card-body-roof">Dachzeile</p><!-- replace with: <p class="card-roof" tal:content="item/dachzeile" tal:condition="item/dachzeile">Dachzeile</p> -->
+                          <p class="card-body-title" tal:content="item/title">Title</p>
+                          <p class="card-body-content" tal:condition="python:item.get('type')=='Event'" tal:content="item/fullevent">Fullevent</p>
                         </div>
                       </a>
                     </div>
